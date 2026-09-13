@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type ChangeEvent, type FormEvent, type ReactNode } from "react";
+import { useState, type FormEvent, type ReactNode } from "react";
 import { buttonVariants } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { site } from "@/lib/site";
@@ -16,13 +16,16 @@ type Fields = {
 
 type Errors = Partial<Record<keyof Fields, string>>;
 
-const empty: Fields = {
-  name: "",
-  company: "",
-  email: "",
-  country: "",
-  message: "",
-};
+function readFields(form: HTMLFormElement): Fields {
+  const data = new FormData(form);
+  return {
+    name: String(data.get("name") ?? ""),
+    company: String(data.get("company") ?? ""),
+    email: String(data.get("email") ?? ""),
+    country: String(data.get("country") ?? ""),
+    message: String(data.get("message") ?? ""),
+  };
+}
 
 function validate(values: Fields): Errors {
   const errors: Errors = {};
@@ -72,46 +75,24 @@ const textareaClassName = cn(
 );
 
 export function InquiryForm() {
-  const [values, setValues] = useState<Fields>(empty);
   const [errors, setErrors] = useState<Errors>({});
-  const [status, setStatus] = useState<"idle" | "success">("idle");
+  const [submitted, setSubmitted] = useState<Fields | null>(null);
 
-  function submitInquiry(event?: FormEvent<HTMLFormElement>) {
-    event?.preventDefault();
+  function onSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const values = readFields(event.currentTarget);
     const nextErrors = validate(values);
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length > 0) return;
 
     // TODO: Replace mailto with a server action or CRM webhook when intake is ready.
-    setStatus("success");
+    setSubmitted(values);
     window.setTimeout(() => {
       window.location.assign(mailtoHref(values));
     }, 50);
   }
 
-  function fieldProps(name: keyof Fields) {
-    return {
-      id: name,
-      name,
-      value: values[name],
-      "aria-invalid": Boolean(errors[name]) || undefined,
-      "aria-describedby": errors[name] ? `${name}-error` : undefined,
-      onChange: (
-        event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-      ) => {
-        setValues((current) => ({ ...current, [name]: event.target.value }));
-        if (errors[name]) {
-          setErrors((current) => {
-            const next = { ...current };
-            delete next[name];
-            return next;
-          });
-        }
-      },
-    };
-  }
-
-  if (status === "success") {
+  if (submitted) {
     return (
       <div
         role="status"
@@ -124,7 +105,7 @@ export function InquiryForm() {
           below.
         </p>
         <a
-          href={mailtoHref(values)}
+          href={mailtoHref(submitted)}
           className="mt-4 inline-flex text-sm font-medium text-navy underline underline-offset-4"
         >
           Open email draft again
@@ -141,10 +122,10 @@ export function InquiryForm() {
 
   return (
     <form
-      onSubmit={submitInquiry}
-      noValidate
+      action={`mailto:${site.inquiryEmail}`}
       method="post"
-      action="/contact"
+      encType="text/plain"
+      onSubmit={onSubmit}
       className="space-y-5"
     >
       {hasErrors ? (
@@ -158,37 +139,85 @@ export function InquiryForm() {
       <div className="grid gap-5 sm:grid-cols-2">
         <Field label="Name" error={errors.name} htmlFor="name">
           <input
-            {...fieldProps("name")}
+            id="name"
+            name="name"
+            required
             autoComplete="name"
             className={fieldClassName}
             placeholder="Full name"
+            aria-invalid={Boolean(errors.name) || undefined}
+            aria-describedby={errors.name ? "name-error" : undefined}
+            onChange={() =>
+              setErrors((current) => {
+                if (!current.name) return current;
+                const next = { ...current };
+                delete next.name;
+                return next;
+              })
+            }
           />
         </Field>
         <Field label="Company" error={errors.company} htmlFor="company">
           <input
-            {...fieldProps("company")}
+            id="company"
+            name="company"
+            required
             autoComplete="organization"
             className={fieldClassName}
             placeholder="Company or trading name"
+            aria-invalid={Boolean(errors.company) || undefined}
+            aria-describedby={errors.company ? "company-error" : undefined}
+            onChange={() =>
+              setErrors((current) => {
+                if (!current.company) return current;
+                const next = { ...current };
+                delete next.company;
+                return next;
+              })
+            }
           />
         </Field>
       </div>
       <div className="grid gap-5 sm:grid-cols-2">
         <Field label="Work email" error={errors.email} htmlFor="email">
           <input
-            {...fieldProps("email")}
+            id="email"
+            name="email"
             type="email"
+            required
             autoComplete="email"
             className={fieldClassName}
             placeholder="name@company.com"
+            aria-invalid={Boolean(errors.email) || undefined}
+            aria-describedby={errors.email ? "email-error" : undefined}
+            onChange={() =>
+              setErrors((current) => {
+                if (!current.email) return current;
+                const next = { ...current };
+                delete next.email;
+                return next;
+              })
+            }
           />
         </Field>
         <Field label="Country" error={errors.country} htmlFor="country">
           <input
-            {...fieldProps("country")}
+            id="country"
+            name="country"
+            required
             autoComplete="country-name"
             className={fieldClassName}
             placeholder="Country or destination market"
+            aria-invalid={Boolean(errors.country) || undefined}
+            aria-describedby={errors.country ? "country-error" : undefined}
+            onChange={() =>
+              setErrors((current) => {
+                if (!current.country) return current;
+                const next = { ...current };
+                delete next.country;
+                return next;
+              })
+            }
           />
         </Field>
       </div>
@@ -198,9 +227,22 @@ export function InquiryForm() {
         htmlFor="message"
       >
         <textarea
-          {...fieldProps("message")}
+          id="message"
+          name="message"
+          required
+          minLength={12}
           className={textareaClassName}
           placeholder="Vehicle types, destination market, and whether you need a standing evaluation arrangement or a one-off report."
+          aria-invalid={Boolean(errors.message) || undefined}
+          aria-describedby={errors.message ? "message-error" : undefined}
+          onChange={() =>
+            setErrors((current) => {
+              if (!current.message) return current;
+              const next = { ...current };
+              delete next.message;
+              return next;
+            })
+          }
         />
       </Field>
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
