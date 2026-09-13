@@ -2,7 +2,7 @@
 
 Marketing site for **MCI (My Car Inspection)**: objective used-car inspection and evaluation reports from Korea, prepared for overseas B2B buyers and importers.
 
-Canonical domain in copy and metadata: **vehicledx.com**.
+Marketing site URL in copy and metadata: **https://mci.vehicledx.com**. Inspection booking stays on **https://vehicledx.com/client?b=VEHICL5M**.
 
 ## Pages
 
@@ -55,11 +55,14 @@ Install the CLI once, then from this repo:
 ```bash
 npm install -g netlify-cli
 netlify login
+netlify sites:create --name mci-vehicledx-marketing
 netlify link
 netlify deploy --prod --build
 ```
 
-`netlify link` attaches this folder to an existing Netlify site (or creates one). `--build` runs `npm run build` from `netlify.toml` and the Next.js plugin, then publishes.
+Create a **new** Netlify site for this marketing repo. Do not link or deploy onto the existing `vehicledx-inspection` site.
+
+`netlify link` should attach this folder to that new site (or create one). `--build` runs `npm run build` from `netlify.toml` and the Next.js plugin, then publishes.
 
 Draft (preview) deploy without promoting to production:
 
@@ -69,13 +72,14 @@ netlify deploy --build
 
 ### B) Git-connected continuous deploy
 
-1. In the [Netlify dashboard](https://app.netlify.com/), add a new site from Git and select this repository / `main`.
-2. Confirm build settings match `netlify.toml`: command `npm run build`, publish directory `.next`, Node 22.
-3. Push to `main` to trigger production deploys. Pull-request / branch deploys follow your Netlify branch settings.
+1. In the [Netlify dashboard](https://app.netlify.com/), **Add new site → Import an existing project**. Do not deploy this repo onto `vehicledx-inspection`.
+2. Select this repository / `main`.
+3. Confirm build settings match `netlify.toml`: command `npm run build`, publish directory `.next`, Node 22.
+4. Push to `main` to trigger production deploys. Pull-request / branch deploys follow your Netlify branch settings.
 
 ### Custom domain
 
-After the site is live on a Netlify URL, add `vehicledx.com` (or a subdomain) in **Domain management**. Point DNS at Netlify only when you are ready; this repo does not change DNS.
+After the new site is live on a Netlify URL, add **mci.vehicledx.com** in **Domain management**. Point that hostname at the new site when you are ready; this repo does not change DNS and must not replace `vehicledx-inspection`.
 
 ## Honest copy
 

@@ -42,7 +42,7 @@ export default function OpenGraphImage() {
               My Car Inspection
             </div>
             <div style={{ fontSize: 18, color: "#94B8B4" }}>
-              마이 카 인스펙션 · vehicledx.com
+              마이 카 인스펙션 · mci.vehicledx.com
             </div>
           </div>
         </div>

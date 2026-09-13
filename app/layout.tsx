@@ -36,6 +36,7 @@ export const metadata: Metadata = {
     "Korean used cars",
     "vehicle inspection",
     "overseas buyers",
+    "mci.vehicledx.com",
     "vehicledx.com",
   ],
   alternates: {

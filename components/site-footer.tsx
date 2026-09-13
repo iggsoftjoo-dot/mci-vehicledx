@@ -45,7 +45,7 @@ export function SiteFooter() {
           <p>
             © {new Date().getFullYear()} {site.legalName}. All rights reserved.
           </p>
-          <p>{site.domain} is the intended home for this brand.</p>
+          <p>{site.domain} is the brand marketing site.</p>
         </div>
       </div>
     </footer>
