@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { SiteLogo } from "@/components/site-logo";
@@ -13,9 +13,18 @@ export function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
+  useEffect(() => {
+    if (!open) return;
+    function onKey(event: KeyboardEvent) {
+      if (event.key === "Escape") setOpen(false);
+    }
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
+
   return (
-    <header className="sticky top-0 z-50 border-b border-navy/10 bg-paper/90 backdrop-blur-md">
-      <div className="container-page flex h-16 items-center justify-between gap-4">
+    <header className="sticky top-0 z-50 border-b border-navy/10 bg-paper/95 backdrop-blur-md">
+      <div className="container-page relative flex h-16 items-center justify-between gap-4">
         <SiteLogo compact />
         <nav aria-label="Primary" className="hidden items-center gap-1 md:flex">
           {nav.map((item) => {
@@ -53,7 +62,7 @@ export function SiteHeader() {
         </div>
         <button
           type="button"
-          className="inline-flex size-10 items-center justify-center rounded-md text-navy md:hidden"
+          className="inline-flex size-11 items-center justify-center rounded-md border border-navy/15 text-navy md:hidden"
           aria-expanded={open}
           aria-controls="mobile-nav"
           onClick={() => setOpen((value) => !value)}
@@ -65,7 +74,7 @@ export function SiteHeader() {
       {open ? (
         <div
           id="mobile-nav"
-          className="border-t border-navy/10 bg-paper md:hidden"
+          className="border-t border-navy/10 bg-paper shadow-lg md:hidden"
         >
           <nav aria-label="Mobile" className="container-page flex flex-col py-3">
             {nav.map((item) => (
@@ -82,7 +91,7 @@ export function SiteHeader() {
               href="/contact"
               className={cn(
                 buttonVariants({ variant: "default" }),
-                "mt-2 h-11 justify-center text-sm"
+                "mt-2 mb-2 h-11 justify-center text-sm"
               )}
               onClick={() => setOpen(false)}
             >
