@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { site } from "@/lib/site";
 
@@ -13,12 +14,14 @@ export function SiteLogo({
       href="/"
       className="group inline-flex items-center gap-2.5 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal"
     >
-      <span
-        aria-hidden
-        className="grid size-9 place-items-center rounded-md bg-navy text-[0.68rem] font-semibold tracking-[0.12em] text-paper"
-      >
-        MCI
-      </span>
+      <Image
+        src="/brand/mci-emblem.png"
+        alt=""
+        width={72}
+        height={72}
+        className="size-9 rounded-full bg-navy-deep object-cover shadow-sm ring-1 ring-navy/10"
+        priority
+      />
       <span className="flex flex-col leading-tight">
         <span
           className={`text-[0.95rem] font-semibold tracking-tight ${

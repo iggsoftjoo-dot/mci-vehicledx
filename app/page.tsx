@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import {
   ClipboardCheck,
@@ -10,6 +11,7 @@ import {
 import { BookingButton } from "@/components/contact-channels";
 import { CredentialNote } from "@/components/credential-note";
 import { CtaBand } from "@/components/cta-band";
+import { HeroAtmosphere } from "@/components/hero-atmosphere";
 import { ReportPreview } from "@/components/report-preview";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -64,16 +66,17 @@ export default function HomePage() {
   return (
     <>
       <section className="relative overflow-hidden bg-navy text-paper">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 opacity-30"
-          style={{
-            background:
-              "radial-gradient(circle at 80% 10%, rgb(20 184 166 / 0.22), transparent 36%), radial-gradient(circle at 10% 90%, rgb(255 255 255 / 0.06), transparent 32%)",
-          }}
-        />
+        <HeroAtmosphere />
         <div className="container-page relative grid items-center gap-12 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:py-24">
           <div>
+            <Image
+              src="/brand/mci-emblem.png"
+              alt="MCI emblem"
+              width={96}
+              height={96}
+              className="mb-6 size-16 rounded-full bg-navy-deep object-cover shadow-lg ring-1 ring-white/15 sm:size-20"
+              priority
+            />
             <p className="text-xs font-semibold tracking-[0.18em] text-teal uppercase">
               객관적인 진단 평가 · Objective inspection
             </p>
