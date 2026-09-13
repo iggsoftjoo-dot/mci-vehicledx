@@ -8,6 +8,7 @@ import {
   Timer,
 } from "lucide-react";
 import { BookingButton } from "@/components/contact-channels";
+import { CredentialNote } from "@/components/credential-note";
 import { CtaBand } from "@/components/cta-band";
 import { ReportPreview } from "@/components/report-preview";
 import { buttonVariants } from "@/components/ui/button";
@@ -214,9 +215,13 @@ export default function HomePage() {
             </h2>
             <p className="mt-4 text-base leading-relaxed text-muted-foreground">
               We do not publish customer logos, inspection volumes, or
-              certifications we cannot stand behind. What we will stand behind
-              is the way the work is done.
+              company-level government endorsements we cannot stand behind.
+              What we will stand behind is who does the work, and how it is
+              done.
             </p>
+            <div className="mt-6">
+              <CredentialNote />
+            </div>
             <Link
               href="/about"
               className="mt-6 inline-flex text-sm font-medium text-navy underline underline-offset-4"

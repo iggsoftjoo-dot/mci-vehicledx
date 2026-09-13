@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { CredentialNote } from "@/components/credential-note";
 import { CtaBand } from "@/components/cta-band";
 import { PageHero } from "@/components/page-hero";
 
@@ -58,6 +59,22 @@ export default function AboutPage() {
       </section>
 
       <section className="section-space bg-navy-mist/60">
+        <div className="container-page grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-start">
+          <div>
+            <h2 className="font-heading text-3xl tracking-tight">
+              Who performs the inspection
+            </h2>
+            <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+              The people on the ground are diagnostic appraisers. This is a
+              statement about their official certification — not a claim that
+              MOLIT endorses MCI as a company.
+            </p>
+          </div>
+          <CredentialNote />
+        </div>
+      </section>
+
+      <section className="section-space">
         <div className="container-page">
           <h2 className="font-heading text-3xl tracking-tight">
             What we are — and are not

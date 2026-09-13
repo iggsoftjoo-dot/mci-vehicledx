@@ -21,6 +21,10 @@ export const site = {
     "used vehicles produced in Korea, and used vehicles that were imported into Korea and driven there",
   description:
     "MCI (My Car Inspection) delivers objective, real-time used-car evaluation reports from Korea to overseas B2B buyers and importers.",
+  appraiserCredential:
+    "Inspections are performed by diagnostic appraisers who hold official certification from an agency under Korea’s Ministry of Land, Infrastructure and Transport (MOLIT).",
+  appraiserCredentialKo:
+    "업무를 진행하는 진단평가사는 한국의 국토교통부 산하 기관의 공인 인증 자격을 가지고 있는 인원들이 진행합니다.",
 } as const;
 
 export const nav = [

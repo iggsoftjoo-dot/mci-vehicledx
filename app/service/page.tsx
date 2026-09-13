@@ -9,6 +9,7 @@ import {
   Video,
   Wrench,
 } from "lucide-react";
+import { CredentialNote } from "@/components/credential-note";
 import { CtaBand } from "@/components/cta-band";
 import { PageHero } from "@/components/page-hero";
 
@@ -65,6 +66,12 @@ export default function ServicePage() {
         title="Inspection that is usable on the other side of the shipment."
         lede="MCI evaluations are scoped for overseas B2B buyers: what the car is, what we observed, and what we could not confirm — delivered when the report is ready."
       />
+
+      <section className="border-b border-navy/10 bg-navy-mist/60">
+        <div className="container-page py-12 md:py-16">
+          <CredentialNote />
+        </div>
+      </section>
 
       <section className="section-space">
         <div className="container-page">
