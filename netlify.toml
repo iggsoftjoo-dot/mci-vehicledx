@@ -1,0 +1,15 @@
+# Next.js 16 App Router on Netlify (OpenNext adapter).
+# Do not pin @netlify/plugin-nextjs in package.json — Netlify installs
+# and updates the latest compatible adapter on each build.
+# Declaring the plugin here makes CLI and Git deploys explicit.
+
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "22"
+  NPM_FLAGS = "--no-audit --no-fund"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
