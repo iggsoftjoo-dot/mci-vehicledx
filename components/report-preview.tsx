@@ -1,10 +1,11 @@
 export function ReportPreview() {
   const rows = [
-    { label: "Exterior / paint", note: "Structured condition notes" },
-    { label: "Interior / equipment", note: "Wear and option check" },
-    { label: "Mechanical findings", note: "Diagnostic evaluator review" },
-    { label: "History where available", note: "Observed vs. unverified" },
-    { label: "Photo set", note: "Prepared for the requesting buyer" },
+    { label: "Exterior / paint", note: "Structured condition notes", status: "Included" },
+    { label: "Interior / equipment", note: "Wear and option check", status: "Included" },
+    { label: "Mechanical findings", note: "Diagnostic evaluator review", status: "Included" },
+    { label: "History where available", note: "Observed vs. unverified", status: "Included" },
+    { label: "Photo set", note: "Standard evaluation materials", status: "Included" },
+    { label: "Video materials", note: "Paid add-on, on request", status: "Add-on" },
   ];
 
   return (
@@ -35,14 +36,14 @@ export function ReportPreview() {
         </div>
         <div className="px-5 py-5">
           <p className="text-[0.7rem] tracking-[0.16em] text-teal uppercase">
-            Korea-sourced used vehicle
+            Korea-registered used vehicle
           </p>
           <p className="mt-2 font-heading text-2xl text-paper">
             Objective condition report
           </p>
           <p className="mt-2 text-sm text-paper/65">
-            Domestic production or imported-for-Korea inventory. Written for
-            an overseas importer, not a local listing.
+            Produced in Korea, or imported into Korea and driven there.
+            Written for an overseas importer, not a local listing.
           </p>
           <ul className="mt-6 divide-y divide-white/10">
             {rows.map((row) => (
@@ -55,7 +56,7 @@ export function ReportPreview() {
                   <p className="text-xs text-paper/55">{row.note}</p>
                 </div>
                 <span className="mt-0.5 shrink-0 text-[0.68rem] tracking-wide text-teal uppercase">
-                  Included
+                  {row.status}
                 </span>
               </li>
             ))}

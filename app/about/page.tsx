@@ -27,9 +27,10 @@ export default function AboutPage() {
             <div className="mt-6 space-y-4 text-base leading-relaxed text-muted-foreground">
               <p>
                 Buying used cars from Korea is a distance problem as much as a
-                vehicle problem. The inventory is real: domestically produced
-                cars and vehicles imported for Korean use. The people who need
-                a reliable read on those cars often are not.
+                vehicle problem. The inventory is real: used vehicles produced
+                in Korea, and used vehicles that were imported into Korea and
+                driven there. The people who need a reliable read on those
+                cars often are not.
               </p>
               <p>
                 Local remarks are usually written for a local transaction.
@@ -101,6 +102,20 @@ export default function AboutPage() {
         </div>
       </section>
 
+      <section className="section-space bg-navy text-paper">
+        <div className="container-page max-w-3xl">
+          <h2 className="font-heading text-3xl tracking-tight">
+            The delivery system is already running
+          </h2>
+          <p className="mt-5 text-base leading-relaxed text-paper/75">
+            MCI already operates an inspection workflow and secure server
+            storage for photo and video materials. Evaluation files are
+            prepared and held for the overseas buyer who requested them —
+            not published as a public lot feed.
+          </p>
+        </div>
+      </section>
+
       <section className="section-space">
         <div className="container-page max-w-3xl">
           <h2 className="font-heading text-3xl tracking-tight">Mission</h2>
@@ -111,8 +126,8 @@ export default function AboutPage() {
           </p>
           <p className="mt-4 text-base leading-relaxed text-muted-foreground">
             English is our primary language because the audience is global.
-            The work itself stays in Korea, on vehicles already in the Korean
-            market.
+            The work itself stays in Korea, on used vehicles produced there
+            and on used vehicles imported into Korea and driven there.
           </p>
         </div>
       </section>

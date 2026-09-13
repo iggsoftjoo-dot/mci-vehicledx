@@ -5,6 +5,8 @@ import {
   FileSearch,
   Gauge,
   Send,
+  Server,
+  Video,
   Wrench,
 } from "lucide-react";
 import { CtaBand } from "@/components/cta-band";
@@ -41,11 +43,16 @@ const coverage = [
   {
     icon: Camera,
     title: "Photo set and structured notes",
-    body: "Images and written findings are packaged together so the report can travel without a salesperson in the room.",
+    body: "Photographs and written findings are standard. They are packaged so the report can travel without a salesperson in the room.",
+  },
+  {
+    icon: Video,
+    title: "Video materials (paid add-on)",
+    body: "Video is available on request as an additional paid service. It is extra work after you ask for it — not part of the standard photo package. Pricing is quoted per job; we do not list a rate here.",
   },
   {
     icon: Send,
-    title: "Real-time buyer delivery",
+    title: "Buyer delivery",
     body: "Completed materials are sent to the overseas buyer who requested the evaluation — the person who needs them to decide.",
   },
 ];
@@ -67,8 +74,8 @@ export default function ServicePage() {
             </h2>
             <p className="mt-4 text-base leading-relaxed text-muted-foreground">
               Scope is agreed before work starts. The items below are the
-              usual frame for a Korea-sourced used vehicle — domestically
-              produced or imported for Korean use.
+              usual frame for a Korea-registered used vehicle — produced in
+              Korea, or imported into Korea and driven there.
             </p>
           </div>
           <div className="mt-12 grid gap-5 md:grid-cols-2">
@@ -118,7 +125,7 @@ export default function ServicePage() {
               },
               {
                 title: "Compile the package",
-                body: "Photos and notes are structured so a remote buying team can review them without translation theater.",
+                body: "Standard photos and notes are structured for a remote buying team. Requested video is produced as extra paid work.",
               },
               {
                 title: "Deliver when ready",
@@ -141,6 +148,42 @@ export default function ServicePage() {
         </div>
       </section>
 
+      <section className="section-space bg-navy-mist/60">
+        <div className="container-page grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+          <div>
+            <p className="text-xs font-semibold tracking-[0.18em] text-teal uppercase">
+              Already in place
+            </p>
+            <h2 className="mt-3 font-heading text-3xl tracking-tight">
+              Workflow and secure storage for photos and video
+            </h2>
+            <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+              MCI already runs an inspection workflow and stores evaluation
+              photos and videos on a secure server. That is how materials
+              reach the overseas buyer who requested them — as a controlled
+              delivery, not a public listing.
+            </p>
+          </div>
+          <ul className="space-y-4 text-sm leading-relaxed text-muted-foreground">
+            <li className="flex gap-3">
+              <Server className="mt-0.5 size-5 shrink-0 text-teal" aria-hidden />
+              Inspection steps are handled in a single workflow, from request
+              through delivery.
+            </li>
+            <li className="flex gap-3">
+              <Camera className="mt-0.5 size-5 shrink-0 text-teal" aria-hidden />
+              Photo materials are stored securely as part of the standard
+              evaluation package.
+            </li>
+            <li className="flex gap-3">
+              <Video className="mt-0.5 size-5 shrink-0 text-teal" aria-hidden />
+              Video files, when requested as a paid add-on, use the same
+              secure storage.
+            </li>
+          </ul>
+        </div>
+      </section>
+
       <section className="section-space">
         <div className="container-page grid gap-10 md:grid-cols-2">
           <div>
@@ -151,6 +194,7 @@ export default function ServicePage() {
               <li>Company name and destination market</li>
               <li>Vehicle identifiers or lot references</li>
               <li>Whether you need a standing arrangement or a one-off report</li>
+              <li>Whether you want paid video materials in addition to the standard photo set</li>
               <li>The decision you are trying to make with the evaluation</li>
             </ul>
           </div>
@@ -171,7 +215,6 @@ export default function ServicePage() {
       <CtaBand
         title="Request a report, or get evaluation access."
         body="If you already have units in mind, include identifiers. If you are setting up a buying program, tell us the market and volume you expect to discuss."
-        primaryLabel="Request a report"
       />
     </>
   );

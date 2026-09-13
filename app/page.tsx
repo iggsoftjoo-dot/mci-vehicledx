@@ -7,6 +7,7 @@ import {
   ShieldCheck,
   Timer,
 } from "lucide-react";
+import { BookingButton } from "@/components/contact-channels";
 import { CtaBand } from "@/components/cta-band";
 import { ReportPreview } from "@/components/report-preview";
 import { buttonVariants } from "@/components/ui/button";
@@ -30,8 +31,8 @@ const values = [
   },
   {
     icon: Globe2,
-    title: "Korea-sourced inventory",
-    body: "Coverage is for used cars already in Korea: domestically produced vehicles and vehicles imported for Korean use.",
+    title: "Korea-registered inventory",
+    body: "Coverage is for used cars already in Korea: vehicles produced in Korea, and vehicles that were imported into Korea and driven there.",
   },
 ];
 
@@ -49,7 +50,7 @@ const steps = [
   {
     step: "03",
     title: "Structured report",
-    body: "Photos, findings, and condition notes are compiled as an evaluation package for your team.",
+    body: "Photos, findings, and condition notes are compiled as a standard package. Video materials can be added on request as a paid extra.",
   },
   {
     step: "04",
@@ -81,20 +82,13 @@ export default function HomePage() {
             </h1>
             <p className="mt-6 max-w-xl text-base leading-relaxed text-paper/75 md:text-lg">
               MCI — My Car Inspection — works with professional diagnostic
-              evaluators in Korea. We inspect domestically produced and
-              imported-for-Korea used vehicles, then deliver evaluation
-              materials in real time to the importers who need them.
+              evaluators in Korea. We inspect used vehicles produced in
+              Korea, and used vehicles that were imported into Korea and
+              driven there, then deliver evaluation materials to the
+              importers who need them.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link
-                href="/contact"
-                className={cn(
-                  buttonVariants({ variant: "default" }),
-                  "h-11 bg-teal px-5 text-sm text-navy-deep hover:bg-teal/90"
-                )}
-              >
-                Request a report
-              </Link>
+              <BookingButton inverted />
               <Link
                 href="/service"
                 className={cn(
@@ -116,7 +110,7 @@ export default function HomePage() {
             "Independent of the sale",
             "Prepared for overseas B2B buyers",
             "Real-time report delivery",
-            "Domestic + imported-for-Korea stock",
+            "Produced in Korea, or imported and used in Korea",
           ].map((item) => (
             <p
               key={item}
@@ -193,6 +187,22 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="section-space bg-navy text-paper">
+        <div className="container-page max-w-3xl">
+          <p className="text-xs font-semibold tracking-[0.18em] text-teal uppercase">
+            How materials are handled
+          </p>
+          <h2 className="mt-3 font-heading text-3xl tracking-tight md:text-4xl">
+            Inspection workflow and secure storage, already in place.
+          </h2>
+          <p className="mt-4 text-base leading-relaxed text-paper/75">
+            MCI already runs the inspection workflow and stores photo and
+            video evaluation materials on a secure server, so overseas buyers
+            receive files through a controlled channel — not a public listing.
+          </p>
+        </div>
+      </section>
+
       <section className="section-space">
         <div className="container-page grid items-start gap-12 lg:grid-cols-2">
           <div>
@@ -224,7 +234,7 @@ export default function HomePage() {
               {
                 icon: ScanSearch,
                 title: "A clear scope before work starts",
-                body: "We agree what will be inspected, photographed, and written — and what cannot be verified.",
+                body: "We agree what will be inspected, photographed, and written — and whether paid video materials are needed.",
               },
               {
                 icon: ShieldCheck,

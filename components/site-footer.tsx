@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ContactIconRow } from "@/components/contact-channels";
 import { SiteLogo } from "@/components/site-logo";
 import { nav, site } from "@/lib/site";
 
@@ -34,21 +35,9 @@ export function SiteFooter() {
           <p className="text-xs font-semibold tracking-[0.16em] text-teal uppercase">
             Contact
           </p>
-          <ul className="mt-4 space-y-2 text-sm text-paper/80">
-            <li>
-              <a
-                href={`mailto:${site.inquiryEmail}`}
-                className="underline-offset-4 hover:text-paper hover:underline"
-              >
-                {site.inquiryEmail}
-              </a>
-            </li>
-            <li>
-              Canonical domain:{" "}
-              <span className="text-paper">{site.domain}</span>
-            </li>
-            <li>Korea-based inspection · English-first for global buyers</li>
-          </ul>
+          <div className="mt-4">
+            <ContactIconRow inverted />
+          </div>
         </div>
       </div>
       <div className="border-t border-white/10">

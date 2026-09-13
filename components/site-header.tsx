@@ -6,7 +6,8 @@ import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { SiteLogo } from "@/components/site-logo";
-import { nav } from "@/lib/site";
+import { BookingButton } from "@/components/contact-channels";
+import { nav, site } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 export function SiteHeader() {
@@ -49,16 +50,14 @@ export function SiteHeader() {
             );
           })}
         </nav>
-        <div className="hidden md:block">
+        <div className="hidden items-center gap-2 md:flex">
           <Link
             href="/contact"
-            className={cn(
-              buttonVariants({ variant: "default" }),
-              "h-10 px-4 text-sm"
-            )}
+            className="rounded-md px-3 py-2 text-sm font-medium text-muted-foreground hover:text-navy"
           >
-            Request a report
+            Talk to MCI
           </Link>
+          <BookingButton className="h-10 px-4" />
         </div>
         <button
           type="button"
@@ -89,14 +88,23 @@ export function SiteHeader() {
             ))}
             <Link
               href="/contact"
+              className="rounded-md px-2 py-3 text-base font-medium text-navy"
+              onClick={() => setOpen(false)}
+            >
+              Talk to MCI
+            </Link>
+            <a
+              href={site.bookingUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className={cn(
                 buttonVariants({ variant: "default" }),
                 "mt-2 mb-2 h-11 justify-center text-sm"
               )}
               onClick={() => setOpen(false)}
             >
-              Request a report
-            </Link>
+              {site.bookingLabel}
+            </a>
           </nav>
         </div>
       ) : null}

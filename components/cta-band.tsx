@@ -1,17 +1,17 @@
-import Link from "next/link";
+import { BookingButton } from "@/components/contact-channels";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 export function CtaBand({
   title,
   body,
-  primaryLabel = "Get evaluation access",
   secondaryLabel = "Talk to MCI",
+  secondaryHref = "/contact",
 }: {
   title: string;
   body: string;
-  primaryLabel?: string;
   secondaryLabel?: string;
+  secondaryHref?: string;
 }) {
   return (
     <section className="bg-navy text-paper">
@@ -26,24 +26,16 @@ export function CtaBand({
           <p className="mt-4 text-base leading-relaxed text-paper/75">{body}</p>
         </div>
         <div className="flex flex-col gap-3 sm:flex-row">
-          <Link
-            href="/contact"
-            className={cn(
-              buttonVariants({ variant: "default" }),
-              "h-11 bg-teal px-5 text-sm text-navy-deep hover:bg-teal/90"
-            )}
-          >
-            {primaryLabel}
-          </Link>
-          <Link
-            href="/contact"
+          <BookingButton inverted />
+          <a
+            href={secondaryHref}
             className={cn(
               buttonVariants({ variant: "outline" }),
               "h-11 border-paper/25 bg-transparent px-5 text-sm text-paper hover:bg-white/10 hover:text-paper"
             )}
           >
             {secondaryLabel}
-          </Link>
+          </a>
         </div>
       </div>
     </section>

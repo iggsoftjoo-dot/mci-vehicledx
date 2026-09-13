@@ -57,7 +57,7 @@ function mailtoHref(values: Fields) {
       values.message,
     ].join("\n")
   );
-  return `mailto:${site.inquiryEmail}?subject=${subject}&body=${body}`;
+  return `mailto:${site.email}?subject=${subject}&body=${body}`;
 }
 
 const fieldClassName = cn(
@@ -101,7 +101,7 @@ export function InquiryForm() {
         <p className="font-heading text-2xl">Your inquiry is ready to send.</p>
         <p className="mt-3 text-sm leading-relaxed text-navy/80">
           Your email client should open with a message to{" "}
-          <strong>{site.inquiryEmail}</strong>. If it does not, use the link
+          <strong>{site.email}</strong>. If it does not, use the link
           below.
         </p>
         <a
@@ -122,7 +122,7 @@ export function InquiryForm() {
 
   return (
     <form
-      action={`mailto:${site.inquiryEmail}`}
+      action={`mailto:${site.email}`}
       method="post"
       encType="text/plain"
       onSubmit={onSubmit}
@@ -253,7 +253,7 @@ export function InquiryForm() {
           Send inquiry
         </button>
         <p className="text-xs leading-relaxed text-muted-foreground">
-          Opens your email client to {site.inquiryEmail}. No account required.
+          Opens your email client to {site.email}. No account required.
         </p>
       </div>
     </form>
